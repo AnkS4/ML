@@ -21,7 +21,7 @@ X = [[181, 80, 44], [177, 70, 43], [160, 60, 38], [154, 54, 37], [166, 65, 40],
 Y = ['male', 'male', 'female', 'female', 'male', 'male', 'female', 'female',
      'female', 'male', 'male']
 
-#test
+#testdata
 Z = [[190, 70, 43]]
 
 #fitting data
@@ -32,21 +32,13 @@ svc_poly = svc_poly.fit(X, Y)
 svc_rbf = svc_rbf.fit(X, Y)
 nb = nb.fit(X, Y)
 
-#Predicting with same data (as smaller dataset availability)
-pred_dt = dt.predict(X)
-pred_knn = knn.predict(X)
-pred_svc_linear = svc_linear.predict(X)
-pred_svc_poly = svc_poly.predict(X)
-pred_svc_rbf = svc_rbf.predict(X)
-pred_nb = nb.predict(X)
-
-#Accuracy
-acc_dt = acc(Y, pred_dt)
-acc_knn = acc(Y, pred_knn)
-acc_svc_linear = acc(Y, pred_svc_linear)
-acc_svc_poly = acc(Y, pred_svc_poly)
-acc_svc_rbf = acc(Y, pred_svc_rbf)
-acc_nb = acc(Y, pred_nb)
+#Accuracy, Predicting on same data (as smaller dataset availability)
+acc_dt = acc(Y, dt.predict(X))
+acc_knn = acc(Y, knn.predict(X))
+acc_svc_linear = acc(Y, svc_linear.predict(X))
+acc_svc_poly = acc(Y, svc_poly.predict(X))
+acc_svc_rbf = acc(Y, svc_rbf.predict(X))
+acc_nb = acc(Y, nb.predict(X))
 
 print("Accuracy Scores:")
 print("Decision Tree: {:.2f}, KNN: {:.2f}, SVC Linear: {:.2f}, SVC Polynomial: {:.2f}, SVC rbf: {:.2f}, Naive Bayes: {:.2f}".format(\
