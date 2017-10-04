@@ -21,7 +21,7 @@ X = [[181, 80, 44], [177, 70, 43], [160, 60, 38], [154, 54, 37], [166, 65, 40],
 Y = ['male', 'male', 'female', 'female', 'male', 'male', 'female', 'female',
      'female', 'male', 'male']
 
-#test
+#testdata
 Z = [[190, 70, 43]]
 
 #fitting data
@@ -32,25 +32,17 @@ svc_poly = svc_poly.fit(X, Y)
 svc_rbf = svc_rbf.fit(X, Y)
 nb = nb.fit(X, Y)
 
-#Predicting with same data (as smaller dataset availability)
-pred_dt = dt.predict(X)
-pred_knn = knn.predict(X)
-pred_svc_linear = svc_linear.predict(X)
-pred_svc_poly = svc_poly.predict(X)
-pred_svc_rbf = svc_rbf.predict(X)
-pred_nb = nb.predict(X)
-
-#Accuracy
-acc_dt = acc(Y, pred_dt)
-acc_knn = acc(Y, pred_knn)
-acc_svc_linear = acc(Y, pred_svc_linear)
-acc_svc_poly = acc(Y, pred_svc_poly)
-acc_svc_rbf = acc(Y, pred_svc_rbf)
-acc_nb = acc(Y, pred_nb)
+#Accuracy, Predicting on same data (as smaller dataset availability)
+acc_dt = acc(Y, dt.predict(X))
+acc_knn = acc(Y, knn.predict(X))
+acc_svc_linear = acc(Y, svc_linear.predict(X))
+acc_svc_poly = acc(Y, svc_poly.predict(X))
+acc_svc_rbf = acc(Y, svc_rbf.predict(X))
+acc_nb = acc(Y, nb.predict(X))
 
 gender = pandas.DataFrame({'name': ['Decision Tree', 'KNN', 'SVC Linear', 'SVC Polynomial', 'SVC RBF', 'Gaussian Naive Bayes'],\
 'accuracy': [acc_dt, acc_knn, acc_svc_linear, acc_svc_poly, acc_svc_rbf, acc_nb],\
 'prediction': [dt.predict(Z), knn.predict(Z), svc_linear.predict(Z), svc_poly.predict(Z), svc_rbf.predict(Z), nb.predict(Z)]})
 
-#Accuracy scores non-ascending with prediction
+#Accuracy scores non-ascending with prediction of testdata Z
 print((gender.sort_values(by='accuracy', ascending=0)).to_string(index=False))
